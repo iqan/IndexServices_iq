@@ -1,0 +1,194 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="idataModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="idataModelStoreContainer">
+          <EntitySet Name="cities_new2" EntityType="idataModel.Store.cities_new2" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="countries" EntityType="idataModel.Store.countries" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="states" EntityType="idataModel.Store.states" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_cities_new2_states" Association="idataModel.Store.FK_cities_new2_states">
+            <End Role="states" EntitySet="states" />
+            <End Role="cities_new2" EntitySet="cities_new2" />
+          </AssociationSet>
+          <AssociationSet Name="FK_states_countries1" Association="idataModel.Store.FK_states_countries1">
+            <End Role="countries" EntitySet="countries" />
+            <End Role="states" EntitySet="states" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="cities_new2">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="255" />
+          <Property Name="state_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="countries">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="sortname" Type="nvarchar" MaxLength="255" />
+          <Property Name="name" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="states">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="255" />
+          <Property Name="country_id" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_cities_new2_states">
+          <End Role="states" Type="idataModel.Store.states" Multiplicity="1" />
+          <End Role="cities_new2" Type="idataModel.Store.cities_new2" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="states">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="cities_new2">
+              <PropertyRef Name="state_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_states_countries1">
+          <End Role="countries" Type="idataModel.Store.countries" Multiplicity="1" />
+          <End Role="states" Type="idataModel.Store.states" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="countries">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="states">
+              <PropertyRef Name="country_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="idataModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="idataEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="cities_new2" EntityType="idataModel.cities_new2" />
+          <EntitySet Name="countries" EntityType="idataModel.country" />
+          <EntitySet Name="states" EntityType="idataModel.state" />
+          <AssociationSet Name="FK_cities_new2_states" Association="idataModel.FK_cities_new2_states">
+            <End Role="states" EntitySet="states" />
+            <End Role="cities_new2" EntitySet="cities_new2" />
+          </AssociationSet>
+          <AssociationSet Name="FK_states_countries1" Association="idataModel.FK_states_countries1">
+            <End Role="countries" EntitySet="countries" />
+            <End Role="states" EntitySet="states" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="cities_new2">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="state_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="state" Relationship="idataModel.FK_cities_new2_states" FromRole="cities_new2" ToRole="states" />
+        </EntityType>
+        <EntityType Name="country">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="sortname" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="name" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="states" Relationship="idataModel.FK_states_countries1" FromRole="countries" ToRole="states" />
+        </EntityType>
+        <EntityType Name="state">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="country_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="cities_new2" Relationship="idataModel.FK_cities_new2_states" FromRole="states" ToRole="cities_new2" />
+          <NavigationProperty Name="country" Relationship="idataModel.FK_states_countries1" FromRole="states" ToRole="countries" />
+        </EntityType>
+        <Association Name="FK_cities_new2_states">
+          <End Role="states" Type="idataModel.state" Multiplicity="1" />
+          <End Role="cities_new2" Type="idataModel.cities_new2" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="states">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="cities_new2">
+              <PropertyRef Name="state_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_states_countries1">
+          <End Role="countries" Type="idataModel.country" Multiplicity="1" />
+          <End Role="states" Type="idataModel.state" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="countries">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="states">
+              <PropertyRef Name="country_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="idataModelStoreContainer" CdmEntityContainer="idataEntities">
+          <EntitySetMapping Name="cities_new2">
+            <EntityTypeMapping TypeName="idataModel.cities_new2">
+              <MappingFragment StoreEntitySet="cities_new2">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="state_id" ColumnName="state_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="countries">
+            <EntityTypeMapping TypeName="idataModel.country">
+              <MappingFragment StoreEntitySet="countries">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="sortname" ColumnName="sortname" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="states">
+            <EntityTypeMapping TypeName="idataModel.state">
+              <MappingFragment StoreEntitySet="states">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="country_id" ColumnName="country_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

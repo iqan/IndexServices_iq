@@ -1,0 +1,44 @@
+﻿@model i1.Models.Indice
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Indice/Layout.cshtml";
+}
+
+<h2>Delete Index</h2>
+
+@if (@ViewBag.error == null)
+{
+<h3>Are you sure you want to delete this?</h3>
+using (Html.BeginForm())
+{
+<fieldset>
+    <legend>Indice</legend>
+
+    <div class="display-label">IndexId</div>
+    <div class="display-field">@Model.IndexId</div>
+
+    <div class="display-label">IndexName</div>
+    <div class="display-field">@Model.IndexName</div>
+
+    <div class="display-label">IndexInsertionDate</div>
+    <div class="display-field">@String.Format("{0:g}", Model.IndexInsertionDate)</div>
+
+    <div class="display-label">LoginId</div>
+    <div class="display-field">@Model.LoginId</div>
+</fieldset>
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}    
+}
+else
+{
+    <h1>
+   @ViewBag.error
+        </h1>
+}
+
+
+

@@ -1,0 +1,52 @@
+﻿@model IEnumerable<i1.Models.Indice>
+
+@{
+    Layout = "~/Views/Indice/Layout.cshtml";
+    ViewBag.Title = "Indices Home";
+}
+
+<h2>Indices | Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th></th>
+        <th>
+            IndexId
+        </th>
+        <th>
+            IndexName
+        </th>
+        <th>
+            IndexInsertionDate
+        </th>
+        <th>
+            LoginId
+        </th>
+    </tr>
+
+    @foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.ActionLink("Edit", "Edit", item) |
+            @Html.ActionLink("Details", "Details", item) |
+            @Html.ActionLink("Delete", "Delete", item)
+        </td>
+        <td>
+            @item.IndexId
+        </td>
+        <td>
+            @item.IndexName
+        </td>
+        <td>
+
+            @String.Format("{0:g}", item.IndexInsertionDate)
+        </td>
+        <td>
+            @item.LoginId
+        </td>
+    </tr>
+}
+</table>

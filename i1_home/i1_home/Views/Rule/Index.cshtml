@@ -1,0 +1,86 @@
+﻿@model IEnumerable<i1.Models.Rule1>
+
+@{
+    ViewBag.Title = "Rule Index";
+    Layout = "~/Views/Rule/Layout.cshtml";
+}
+
+@if (TempData["message"] != null) {
+    <script type="text/javascript">
+        alert(@Html.Raw(Json.Encode(TempData["message"])));
+    </script>
+}
+
+<h2>Rule Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            Rule Id
+        </th>
+        <th>
+            Rule Name
+        </th>
+        <th>
+            Rule Expression
+        </th>
+        <th>
+            Rule Status
+        </th>
+        <th>
+            Rule CreationDate
+        </th>
+        <th>
+            Fund Id
+        </th>
+        <th>
+            Login Id
+        </th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @item.RuleId
+        </td>
+        <td>
+            @item.RuleName
+        </td>
+        <td>
+            @item.RuleExpression
+        </td>
+        <td>
+            @item.RuleStatus
+        </td>
+        <td>
+            @String.Format("{0:g}", item.RuleCreationDate)
+        </td>
+        <td>
+            @item.FundId
+        </td>
+        <td>
+            @item.LoginId
+        </td>
+        <td></td>
+        <td>
+            @Html.ActionLink("Validate", "ValidateRule", item)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", item)
+        </td>
+        <td>
+            @Html.ActionLink("Delete", "Delete", item)
+        </td>
+    </tr>
+}
+
+</table>
+

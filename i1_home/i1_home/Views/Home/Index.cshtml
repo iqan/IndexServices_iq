@@ -1,0 +1,24 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<h2>@ViewBag.Message</h2>
+
+<div>
+    <p>
+        Introduction to Index Services. Some more content. Some more content.
+    </p>
+</div>
+
+<div>
+    @Html.Partial("~/Views/Account/LogOn.cshtml")  
+</div>
+
+<div>
+    @RenderPage("About.cshtml")
+</div>
+
+<div>
+    @RenderPage("ContactUs.cshtml")
+</div>
+

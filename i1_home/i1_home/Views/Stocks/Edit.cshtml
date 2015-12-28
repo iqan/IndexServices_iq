@@ -1,0 +1,91 @@
+﻿@model i1.Models.Stocks1
+
+@{
+    ViewBag.Title = "Edit Stock";
+    Layout = "~/Views/Indice/Layout.cshtml";
+}
+
+<h2>Edit Stock</h2>
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Edit this Stock</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.IndexId)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.IndexId)
+            @Html.ValidationMessageFor(model => model.IndexId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FundId)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.FundId)
+            @Html.ValidationMessageFor(model => model.FundId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FundName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.FundName)
+            @Html.ValidationMessageFor(model => model.FundName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FundPrice)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.FundPrice)
+            @Html.ValidationMessageFor(model => model.FundPrice)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.EffectiveDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.EffectiveDate)
+            @Html.ValidationMessageFor(model => model.EffectiveDate)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.MinimumThreshold)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.MinimumThreshold)
+            @Html.ValidationMessageFor(model => model.MinimumThreshold)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.MaximumThreshold)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.MaximumThreshold)
+            @Html.ValidationMessageFor(model => model.MaximumThreshold)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.LoginId)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.LoginId)
+            @Html.ValidationMessageFor(model => model.LoginId)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+

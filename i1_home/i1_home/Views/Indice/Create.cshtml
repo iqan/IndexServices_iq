@@ -1,0 +1,70 @@
+﻿@model i1.Models.Indice
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Indice/Layout.cshtml";
+}
+
+<h2>Create Index</h2>
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+   
+  <script type="text/javascript" language="javascript">
+      $(function () {
+          var myDate = new Date();
+          debugger;
+          var prettyDate = (myDate.getMonth() + 1) + '/' + myDate.getDate() + '/' +
+myDate.getFullYear() + " " + myDate.getHours().toString() + ":" + myDate.getMinutes().toString() + ":" + myDate.getSeconds().toString();
+          $("#dt").val(prettyDate);
+      });
+  </script>
+
+@using (Html.BeginForm()) {
+     @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Indice</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.IndexId)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.IndexId)
+            @Html.ValidationMessageFor(model => model.IndexId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.IndexName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.IndexName)
+            @Html.ValidationMessageFor(model => model.IndexName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.IndexInsertionDate)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.IndexInsertionDate, new { @id = "dt", @name = "dt" })
+            @Html.ValidationMessageFor(model => model.IndexInsertionDate)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.LoginId)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.LoginId)
+            @Html.ValidationMessageFor(model => model.LoginId)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+

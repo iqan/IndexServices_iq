@@ -1,0 +1,24 @@
+﻿@model i1.Models.LogOnModel
+
+@{
+    ViewBag.Title = "Registeration Successful";
+}
+
+<script language="javascript" type="text/javascript">
+    $(document).ready(function () {
+        // Handler for .ready() called.
+        window.setTimeout(function () {
+            location.href = "/Account/LogOn";
+        }, 5000);
+    });
+</script>
+
+<h2>Registration Successful !</h2>
+
+Your LoginId is @Model.UserName ! <br />
+
+<br />
+Please Login Again!
+
+<br />
+You will be redirected to homepage in 5 Seconds.

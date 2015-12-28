@@ -1,0 +1,44 @@
+﻿@model i1.Models.Rule1
+
+@{
+    ViewBag.Title = "Delete Rule";
+    Layout = "~/Views/Rule/Layout.cshtml";
+}
+
+<h2>Delete Rule</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+@using (Html.BeginForm()) {
+<fieldset>
+    <legend>Delete this Rule</legend>
+
+    <div class="display-label">RuleId</div>
+    <div class="display-field">@Model.RuleId</div>
+
+    <div class="display-label">RuleName</div>
+    <div class="display-field">@Model.RuleName</div>
+
+    <div class="display-label">RuleExpression</div>
+    <div class="display-field">@Model.RuleExpression</div>
+
+    <div class="display-label">RuleStatus</div>
+    <div class="display-field">@Model.RuleStatus</div>
+
+    <div class="display-label">RuleCreationDate</div>
+    <div class="display-field">@String.Format("{0:g}", Model.RuleCreationDate)</div>
+
+    <div class="display-label">FundId</div>
+    <div class="display-field">@Model.FundId</div>
+
+    <div class="display-label">LoginId</div>
+    <div class="display-field">@Model.LoginId</div>
+</fieldset>
+
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}
+
+
+

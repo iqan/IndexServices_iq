@@ -1,0 +1,20 @@
+﻿@using i1.Models;
+@model IEnumerable<i1.Models.MonitorDisp>
+
+@{
+    ViewBag.Title = "ValidateRule";
+    Layout = "~/Views/Rule/Layout.cshtml";
+}
+
+<h2>Validated Rules</h2>
+
+<div>
+    <ul>@foreach (var R in @Model)
+        {
+        <li>@R.IndexId</li>
+        <li>@R.ProcessingStatus</li>
+        <li>@R.RecordInsertionDate</li>
+       <p>-----------------------</p>
+        }
+    </ul>
+</div>

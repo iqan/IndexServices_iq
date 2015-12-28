@@ -1,0 +1,78 @@
+﻿@model IEnumerable<i1.Models.Stocks1>
+
+@{
+    ViewBag.Title = "Stock Index";
+    Layout = "~/Views/Indice/Layout.cshtml";
+}
+
+<h2>Stock Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th></th>
+        <th>
+            IndexId
+        </th>
+        <th>
+            FundId
+        </th>
+        <th>
+            FundName
+        </th>
+        <th>
+            FundPrice
+        </th>
+        <th>
+            EffectiveDate
+        </th>
+        <th>
+            MinimumThreshold
+        </th>
+        <th>
+            MaximumThreshold
+        </th>
+        <th>
+            LoginId
+        </th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.ActionLink("Edit", "Edit", item) |
+            @Html.ActionLink("Details", "Details", item) |
+            @Html.ActionLink("Delete", "Delete", item)
+        </td>
+        <td>
+            @item.IndexId
+        </td>
+        <td>
+            @item.FundId
+        </td>
+        <td>
+            @item.FundName
+        </td>
+        <td>
+            @String.Format("{0:F}", item.FundPrice)
+        </td>
+        <td>
+            @String.Format("{0:g}", item.EffectiveDate)
+        </td>
+        <td>
+            @String.Format("{0:F}", item.MinimumThreshold)
+        </td>
+        <td>
+            @String.Format("{0:F}", item.MaximumThreshold)
+        </td>
+        <td>
+            @item.LoginId
+        </td>
+    </tr>
+}
+
+</table>
+

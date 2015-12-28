@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="idataModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="idataEntities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="cities_new2" EntityType="idataModel.cities_new2" />
+    <EntitySet Name="countries" EntityType="idataModel.country" />
+    <EntitySet Name="states" EntityType="idataModel.state" />
+    <AssociationSet Name="FK_cities_new2_states" Association="idataModel.FK_cities_new2_states">
+      <End Role="states" EntitySet="states" />
+      <End Role="cities_new2" EntitySet="cities_new2" />
+    </AssociationSet>
+    <AssociationSet Name="FK_states_countries1" Association="idataModel.FK_states_countries1">
+      <End Role="countries" EntitySet="countries" />
+      <End Role="states" EntitySet="states" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="cities_new2">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+    <Property Name="state_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="state" Relationship="idataModel.FK_cities_new2_states" FromRole="cities_new2" ToRole="states" />
+  </EntityType>
+  <EntityType Name="country">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="sortname" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+    <Property Name="name" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="states" Relationship="idataModel.FK_states_countries1" FromRole="countries" ToRole="states" />
+  </EntityType>
+  <EntityType Name="state">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+    <Property Name="country_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="cities_new2" Relationship="idataModel.FK_cities_new2_states" FromRole="states" ToRole="cities_new2" />
+    <NavigationProperty Name="country" Relationship="idataModel.FK_states_countries1" FromRole="states" ToRole="countries" />
+  </EntityType>
+  <Association Name="FK_cities_new2_states">
+    <End Role="states" Type="idataModel.state" Multiplicity="1" />
+    <End Role="cities_new2" Type="idataModel.cities_new2" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="states">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="cities_new2">
+        <PropertyRef Name="state_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_states_countries1">
+    <End Role="countries" Type="idataModel.country" Multiplicity="1" />
+    <End Role="states" Type="idataModel.state" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="countries">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="states">
+        <PropertyRef Name="country_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

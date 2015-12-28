@@ -1,0 +1,45 @@
+﻿@model i1.Models.Rule1
+
+@{
+    ViewBag.Title = "Rule Details";
+    Layout = "~/Views/Rule/Layout.cshtml";
+}
+
+@if (TempData["message"] != null) {
+    <script type="text/javascript">
+        alert(@Html.Raw(Json.Encode(TempData["message"])));
+    </script>
+}
+
+<h2>Rule Details</h2>
+
+<fieldset>
+    <legend>Rule</legend>
+
+    <div class="display-label">RuleId</div>
+    <div class="display-field">@Model.RuleId</div>
+
+    <div class="display-label">RuleName</div>
+    <div class="display-field">@Model.RuleName</div>
+
+    <div class="display-label">RuleExpression</div>
+    <div class="display-field">@Model.RuleExpression</div>
+
+    <div class="display-label">RuleStatus</div>
+    <div class="display-field">@Model.RuleStatus</div>
+
+    <div class="display-label">RuleCreationDate</div>
+    <div class="display-field">@String.Format("{0:g}", Model.RuleCreationDate)</div>
+
+    <div class="display-label">FundId</div>
+    <div class="display-field">@Model.FundId</div>
+    
+    <div class="display-label">LoginId</div>
+    <div class="display-field">@Model.LoginId</div>
+</fieldset>
+
+<p>
+    @Html.ActionLink("Edit", "Edit", @Model) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+

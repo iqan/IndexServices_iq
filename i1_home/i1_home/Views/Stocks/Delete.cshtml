@@ -1,0 +1,45 @@
+﻿@model i1.Models.Stocks1
+
+@{
+    ViewBag.Title = "Delete Stock";
+    Layout = "~/Views/Indice/Layout.cshtml";
+}
+
+<h2>Delete Stock</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Delete this Stock</legend>
+
+    <div class="display-label">IndexId</div>
+    <div class="display-field">@Model.IndexId</div>
+
+    <div class="display-label">FundId</div>
+    <div class="display-field">@Model.FundId</div>
+
+    <div class="display-label">FundName</div>
+    <div class="display-field">@Model.FundName</div>
+
+    <div class="display-label">FundPrice</div>
+    <div class="display-field">@String.Format("{0:F}", Model.FundPrice)</div>
+
+    <div class="display-label">Effective Date (mm/dd/yyyy)</div>
+    <div class="display-field">@String.Format("{0:g}", Model.EffectiveDate)</div>
+
+    <div class="display-label">MinimumThreshold</div>
+    <div class="display-field">@String.Format("{0:F}", Model.MinimumThreshold)</div>
+
+    <div class="display-label">MaximumThreshold</div>
+    <div class="display-field">@String.Format("{0:F}", Model.MaximumThreshold)</div>
+
+    <div class="display-label">LoginId</div>
+    <div class="display-field">@Model.LoginId</div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}
+
+
